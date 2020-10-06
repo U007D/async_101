@@ -1,1 +1,1 @@
-pub const SAMPLE_ERROR: &str = "Error: This is a sample error";
+pub const IO_ERROR: &str = "Error: Error performing IO";

@@ -23,3 +23,17 @@
 mod consts;
 mod error;
 pub use error::{Error, Result};
+use std::{
+    fs::File,
+    io::Read
+};
+use std::path::Path;
+
+#[cfg(test)]
+mod unit_tests;
+
+pub fn read_n_bytes<P: AsRef<Path>>(filename: P, n: usize) -> Result<Vec<u8>> {
+    let mut res = Vec::with_capacity(n);
+    File::open(filename)?.read_exact(&mut res)?;
+    Ok(res)
+}
