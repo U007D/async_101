@@ -28,12 +28,13 @@ use std::{
     io::Read
 };
 use std::path::Path;
+use std::fmt::Debug;
 
 #[cfg(test)]
 mod unit_tests;
 
-pub fn read_n_bytes<P: AsRef<Path>>(filename: P, n: usize) -> Result<Vec<u8>> {
-    let mut res = Vec::with_capacity(n);
+pub fn read_n_bytes<P: AsRef<Path> + Debug>(filename: P, n: usize) -> Result<Vec<u8>> {
+    let mut res = vec![0; n];
     File::open(filename)?.read_exact(&mut res)?;
     Ok(res)
 }
